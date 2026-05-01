@@ -185,7 +185,7 @@ public class TicketServiceTest {
     }
     @ParameterizedTest
     @MethodSource("invalidZeroOrLessNumberOfTicketsAreOrderedInAnyTicketRequest")
-    public void purchaseTickets_whenGivenTicketWithZeroOrLessNumberOfTicketsToOrder_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
+    public void purchaseTickets_whenGivenTicketRequestWithZeroOrLessNumberOfTicketsToOrder_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
         assertThrows(InvalidPurchaseException.class, () ->
             ticketService.purchaseTickets(accountId,requests)
         );
@@ -226,7 +226,7 @@ public class TicketServiceTest {
     }
     @ParameterizedTest
     @MethodSource("validTickets")
-    public void purchaseTickets_whenGivenValidTicket_CorrectlyCallsPaymentServiceAndSeatReservationService(long accountId, int expectedPrice, int expectedSeat, TicketTypeRequest[] requests) {
+    public void purchaseTickets_whenValidTicketsAreOrdered_CorrectlyCallsPaymentServiceAndSeatReservationService(long accountId, int expectedPrice, int expectedSeat, TicketTypeRequest[] requests) {
         ticketService.purchaseTickets(accountId,requests);
         verify(paymentServiceMock).makePayment(accountId, expectedPrice);
         verify(seatReservationServiceMock).reserveSeat(accountId, expectedSeat);
