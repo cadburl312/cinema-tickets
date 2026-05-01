@@ -97,7 +97,7 @@ public class TicketServiceTest {
 
     @ParameterizedTest
     @MethodSource("invalidMoreThanMaxTicketsAreOrdered")
-    public void purchaseTickets_WhenMoreThanMaxTicketsAreOrdered_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
+    public void purchaseTickets_whenMoreThanMaxTicketsAreOrdered_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
 
         assertThrows(InvalidPurchaseException.class, () ->
             ticketService.purchaseTickets(accountId,requests)
@@ -122,7 +122,7 @@ public class TicketServiceTest {
 
     @ParameterizedTest
     @MethodSource("invalidNoAdultTicketsAreOrdered")
-    public void purchaseTickets_whenNoAdultsTicketsAreOrdered_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
+    public void purchaseTickets_whenNoAdultTicketsAreOrdered_throwsInvalidPurchaseException(long accountId, TicketTypeRequest[] requests) {
         assertThrows(InvalidPurchaseException.class, () ->
             ticketService.purchaseTickets(accountId,requests)
         );
